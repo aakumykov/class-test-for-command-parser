@@ -21,8 +21,8 @@ class ParserClass
       int data_piece = atoi(raw_data_piece);
       
       while (NULL != raw_data_piece) {
-        this->the_data[this->the_counter] = data_piece;
-        this->the_counter += 1;
+        this->the_data[this->the_counter++] = data_piece;
+        //this->the_counter += 1;
         
         raw_data_piece = strtok(NULL, this->data_delimiter);
         data_piece = atoi(raw_data_piece);
