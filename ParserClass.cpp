@@ -4,6 +4,7 @@ class ParserClass
 {
   public:
     ParserClass() {
+      this->data = new int[10];
     }
 
     void fillData() {
@@ -27,6 +28,7 @@ class ParserClass
 
   private:
       int len = 5;
-      int* data = new int[10];
+      //int* data = new int[10];
+      int* data;
 };
 
