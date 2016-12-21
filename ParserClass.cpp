@@ -36,11 +36,12 @@ class ParserClass
 
     int* getData() {
       //Serial.println("ParserClass.getData()");
-      int* d = new int[this->counter];
-      for (int i=0; i < this->counter; i++) {
-        d[i] = this->data[i];
-      }
-      return d;
+//      int* d = new int[this->counter];
+//      for (int i=0; i < this->counter; i++) {
+//        d[i] = this->data[i];
+//      }
+//      return d;
+      return this->data;
     }
 
     int getDataCount() {
