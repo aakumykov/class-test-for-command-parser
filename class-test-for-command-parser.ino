@@ -8,18 +8,18 @@ void setup() {
 
   parser.parse("11:2,3,4,5");
   
-  Serial.print("command: "); Serial.println(parser.getCommand());
+  Serial.print("command: "); Serial.println(parser.command());
 
-  int count = parser.getDataCount();
+  int count = parser.length();
   Serial.print("data count: "); Serial.println(count);
   
-  int* data = parser.getData();
+  int* data = parser.data();
   Serial.print("data: ");
   for (int i=0; i < count; i++) {
     Serial.print(i); Serial.print(":"); Serial.print(data[i]); Serial.print(", ");
   } Serial.println("");
 
-  int* data2 = parser.getData();
+  int* data2 = parser.data();
   Serial.print("data: ");
   for (int i=0; i < count; i++) {
     Serial.print(i); Serial.print(":"); Serial.print(data2[i]); Serial.print(", ");
@@ -27,8 +27,8 @@ void setup() {
   
   parser.parse("22:3,4,5,6");
   Serial.print("command: ");
-  Serial.println(parser.getCommand());
-  int* data3 = parser.getData();
+  Serial.println(parser.command());
+  int* data3 = parser.data();
   Serial.print("data: ");
   for (int i=0; i < count; i++) {
     Serial.print(i); Serial.print(":"); Serial.print(data3[i]); Serial.print(", ");
@@ -36,8 +36,8 @@ void setup() {
 
 //  parser.parse("33:4,5,6,7");
 //  Serial.print("command: ");
-//  Serial.println(parser.getCommand());
-//  parser.getData();
+//  Serial.println(parser.command());
+//  parser.data();
 }
 
 void loop() {
