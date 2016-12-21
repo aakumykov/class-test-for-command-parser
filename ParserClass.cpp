@@ -33,13 +33,23 @@ class ParserClass
       return this->cmd;
     }
 
-    void getData() {
+    int* getData() {
       Serial.println("ParserClass.getData()");
+//      for (int i=0; i < this->data_counter; i++) {
+//        Serial.print(i);
+//        Serial.print(": ");
+//        Serial.println(this->data[i]);
+//      }
+      int* d = new int[this->data_counter];
       for (int i=0; i < this->data_counter; i++) {
-        Serial.print(i);
-        Serial.print(": ");
-        Serial.println(this->data[i]);
+        d[i] = this->data[i];
       }
+      return d;
+    }
+
+    int getLength() {
+      Serial.println("ParserClass.getLength()");
+      return this->data_counter;
     }
 
   private:

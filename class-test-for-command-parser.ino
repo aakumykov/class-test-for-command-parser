@@ -9,17 +9,18 @@ void setup() {
   parser.parse("11:2,3,4,5");
   Serial.print("command: ");
   Serial.println(parser.getCommand());
-  parser.getData();
+  int* data = parser.getData();
+  
 
-  parser.parse("22:3,4,5,6");
-  Serial.print("command: ");
-  Serial.println(parser.getCommand());
-  parser.getData();
-
-  parser.parse("33:4,5,6,7");
-  Serial.print("command: ");
-  Serial.println(parser.getCommand());
-  parser.getData();
+//  parser.parse("22:3,4,5,6");
+//  Serial.print("command: ");
+//  Serial.println(parser.getCommand());
+//  parser.getData();
+//
+//  parser.parse("33:4,5,6,7");
+//  Serial.print("command: ");
+//  Serial.println(parser.getCommand());
+//  parser.getData();
 }
 
 void loop() {
