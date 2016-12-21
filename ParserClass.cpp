@@ -12,33 +12,35 @@ class ParserClass
       Serial.print(str);
       Serial.println(")");
 
-      char* cmd = strtok(str, ":");
-      Serial.print("cmd: ");
-      Serial.println(cmd);
+      char* raw_cmd = strtok(str, ":");
+      this->cmd = atoi(raw_cmd);
       
-      char* data_piece = strtok(NULL, ",");
-      while (NULL != data_piece) {
-          Serial.print("data_piece: ");
-          Serial.println(data_piece);
-        data_piece = strtok(NULL, ",");
+//      Serial.print("cmd: ");
+//      Serial.println(this->cmd);
+      
+      char* raw_data_piece = strtok(NULL, ",");
+      int data_piece = atoi(raw_data_piece);
+      
+      while (NULL != raw_data_piece) {
+//          Serial.print("data_piece: ");
+//          Serial.println(data_piece);
+        
+        this->data[this->data_counter] = data_piece;
+        this->data_counter += 1;
+        
+        raw_data_piece = strtok(NULL, ",");
+        data_piece = atoi(raw_data_piece);
       }
-      
-      //Serial.println();
     }
 
-    void fillData() {
-      Serial.println("ParserClass.fillData()");
-      for (int i=0; i < this->len; i++) {
-//        Serial.print(i);
-//        Serial.print(": ");
-//        Serial.println(i*2);
-        this->data[i] = i*2;
-      }
+    int getCommand(){
+      //Serial.println("ParserClass.getCommand()");
+      return this->cmd;
     }
 
     void getData() {
       Serial.println("ParserClass.getData()");
-      for (int i=0; i < this->len; i++) {
+      for (int i=0; i < this->data_counter; i++) {
         Serial.print(i);
         Serial.print(": ");
         Serial.println(this->data[i]);
@@ -46,8 +48,8 @@ class ParserClass
     }
 
   private:
-      int len = 5;
-      //int* data = new int[10];
-      int* data;
+    int cmd;
+    int* data = new int[512];
+    int data_counter = 0;
 };
 
