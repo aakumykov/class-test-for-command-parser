@@ -8,23 +8,18 @@ class ParserClass
     }
 
     void parse(char* str) {
-      Serial.print("ParserClass.parse(");
-      Serial.print(str);
-      Serial.println(")");
+      //Serial.print("ParserClass.parse("); Serial.print(str); Serial.println(")");
+
+      // "стираю" старые данные
+      this->data_counter = 0;
 
       char* raw_cmd = strtok(str, ":");
       this->cmd = atoi(raw_cmd);
-      
-//      Serial.print("cmd: ");
-//      Serial.println(this->cmd);
       
       char* raw_data_piece = strtok(NULL, ",");
       int data_piece = atoi(raw_data_piece);
       
       while (NULL != raw_data_piece) {
-//          Serial.print("data_piece: ");
-//          Serial.println(data_piece);
-        
         this->data[this->data_counter] = data_piece;
         this->data_counter += 1;
         
