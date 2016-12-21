@@ -7,6 +7,25 @@ class ParserClass
       this->data = new int[10];
     }
 
+    void parse(char* str) {
+      Serial.print("ParserClass.parse(");
+      Serial.print(str);
+      Serial.println(")");
+
+      char* cmd = strtok(str, ":");
+      Serial.print("cmd: ");
+      Serial.println(cmd);
+      
+      char* data_piece = strtok(NULL, ",");
+      while (NULL != data_piece) {
+          Serial.print("data_piece: ");
+          Serial.println(data_piece);
+        data_piece = strtok(NULL, ",");
+      }
+      
+      //Serial.println();
+    }
+
     void fillData() {
       Serial.println("ParserClass.fillData()");
       for (int i=0; i < this->len; i++) {
