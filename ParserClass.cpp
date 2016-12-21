@@ -8,7 +8,7 @@ class ParserClass
     }
 
     void parse(char* str) {
-      //Serial.print("ParserClass.parse("); Serial.print(str); Serial.println(")");
+      Serial.print("ParserClass.parse("); Serial.print(str); Serial.println(")");
 
       // "стираю" старые данные
       this->data_counter = 0;
@@ -34,7 +34,7 @@ class ParserClass
     }
 
     int* getData() {
-      Serial.println("ParserClass.getData()");
+      //Serial.println("ParserClass.getData()");
 //      for (int i=0; i < this->data_counter; i++) {
 //        Serial.print(i);
 //        Serial.print(": ");
@@ -47,8 +47,8 @@ class ParserClass
       return d;
     }
 
-    int getLength() {
-      Serial.println("ParserClass.getLength()");
+    int getDataCount() {
+      //Serial.println("ParserClass.getDataCount()");
       return this->data_counter;
     }
 
