@@ -3,45 +3,41 @@
 class ParserClass
 {
   public:
-    ParserClass() {
-      this->data = new int[10];
+    ParserClass(int maxDataLen, char* command_delimiter, char* data_delimiter) {
+      this->data = new int[maxDataLen];
+      this->command_delimiter = command_delimiter;
+      this->data_delimiter = data_delimiter;
     }
 
     void parse(char* str) {
       Serial.print("ParserClass.parse("); Serial.print(str); Serial.println(")");
 
-      // "стираю" старые данные
-      this->data_counter = 0;
+      this->clear();
 
-      char* raw_cmd = strtok(str, ":");
-      this->cmd = atoi(raw_cmd);
+      char* raw_command = strtok(str, this->command_delimiter);
+      this->command = atoi(raw_command);
       
-      char* raw_data_piece = strtok(NULL, ",");
+      char* raw_data_piece = strtok(NULL, this->data_delimiter);
       int data_piece = atoi(raw_data_piece);
       
       while (NULL != raw_data_piece) {
-        this->data[this->data_counter] = data_piece;
-        this->data_counter += 1;
+        this->data[this->counter] = data_piece;
+        this->counter += 1;
         
-        raw_data_piece = strtok(NULL, ",");
+        raw_data_piece = strtok(NULL, this->data_delimiter);
         data_piece = atoi(raw_data_piece);
       }
     }
 
     int getCommand(){
       //Serial.println("ParserClass.getCommand()");
-      return this->cmd;
+      return this->command;
     }
 
     int* getData() {
       //Serial.println("ParserClass.getData()");
-//      for (int i=0; i < this->data_counter; i++) {
-//        Serial.print(i);
-//        Serial.print(": ");
-//        Serial.println(this->data[i]);
-//      }
-      int* d = new int[this->data_counter];
-      for (int i=0; i < this->data_counter; i++) {
+      int* d = new int[this->counter];
+      for (int i=0; i < this->counter; i++) {
         d[i] = this->data[i];
       }
       return d;
@@ -49,12 +45,19 @@ class ParserClass
 
     int getDataCount() {
       //Serial.println("ParserClass.getDataCount()");
-      return this->data_counter;
+      return this->counter;
+    }
+
+    void clear() {
+      this->counter = 0;
     }
 
   private:
-    int cmd;
-    int* data = new int[512];
-    int data_counter = 0;
+    char* command_delimiter;
+    char* data_delimiter;
+    
+    int command;
+    int* data;
+    int counter = 0;
 };
 
