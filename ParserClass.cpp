@@ -10,6 +10,7 @@ class ParserClass
     }
 
     void parse(char* str) {
+      Serial.println("");
       Serial.print("ParserClass.parse("); Serial.print(str); Serial.println(")");
 
       this->clear();
