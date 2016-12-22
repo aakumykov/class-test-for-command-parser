@@ -17,9 +17,9 @@ class ParserClass
       this->clear();
 
       char* raw_command = strtok(str, this->command_delimiter);
-      //Serial.print(F("raw_command: ")); Serial.println(raw_command);
-      //this->the_command = atoi(raw_command);
-      this->the_command = (unsigned long)(raw_command);
+      Serial.print(F("raw_command: ")); Serial.println(raw_command);
+      this->the_command = atoi(raw_command);
+//      this->the_command = (unsigned long)(raw_command);
       
       char* raw_data_piece = strtok(NULL, this->data_delimiter);
       int data_piece = atoi(raw_data_piece);
@@ -33,9 +33,9 @@ class ParserClass
       }
 
       if (debug) {
-        //this->data();
-        //this->length();
-        //this->command();
+        this->length();
+        this->command();
+        this->data();
         Serial.print(F("free memory: ")); Serial.println(freeMemory());
       }
     }
