@@ -1,6 +1,7 @@
 #include "CommandParser.cpp"
 #include <MemoryFree.h>
 
+// Как он обрабатывает 300-членную команду при максимальной длине 128?
 CommandParser p(128, ":", ",");
 
 void setup() {
