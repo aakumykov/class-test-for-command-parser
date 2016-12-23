@@ -1,10 +1,10 @@
 #include <Arduino.h>
 #include <MemoryFree.h>
 
-class ParserClass
+class CommandParser
 {
   public:
-    ParserClass(int max_input_len, char* command_delimiter, char* data_delimiter) {
+    CommandParser(int max_input_len, char* command_delimiter, char* data_delimiter) {
       this->the_data = new int[max_input_len];
       this->command_delimiter = command_delimiter;
       this->data_delimiter = data_delimiter;
@@ -12,7 +12,7 @@ class ParserClass
 
     void parse(char* str, bool debug=false) {
       Serial.println(F(""));
-      Serial.print(F("ParserClass.parse("));
+      Serial.print(F("CommandParser.parse("));
       Serial.print(str);
       Serial.println(F(")"));
 
@@ -37,20 +37,20 @@ class ParserClass
       if (debug) {
         this->command();
         //this->data();
-        this->dataCount();
+        this->length();
         Serial.print(F("free memory: ")); Serial.println(freeMemory());
       }
     }
 
-    int command(){
-      //Serial.println(F("ParserClass.getCommand()"));
+    byte command(){
+      //Serial.println(F("CommandParser.getCommand()"));
       Serial.print(F("command: "));
       Serial.println(this->the_command);
       return this->the_command;
     }
 
     int* data() {
-//      Serial.println(F("ParserClass.getData()"));
+//      Serial.println(F("CommandParser.getData()"));
 
 //      int* d = new int[this->the_counter];
 //      for (int i=0; i < this->the_counter; i++) {
@@ -69,16 +69,11 @@ class ParserClass
       return this->the_data;
     }
 
-    int dataCount() {
-      //Serial.println(F("ParserClass.getDataCount()"));
+    int length() {
+      //Serial.println(F("CommandParser.getDataCount()"));
       Serial.print(F("data count: "));
       Serial.println(this->the_counter);
       return this->the_counter;
-    }
-
-    void clear() {
-      //Serial.println(F("ParserClass.clear()"));
-      this->the_counter = 0;
     }
 
   private:
@@ -88,5 +83,10 @@ class ParserClass
     unsigned long the_command;
     int* the_data;
     int the_counter = 0;
+
+    void clear() {
+      //Serial.println(F("CommandParser.clear()"));
+      this->the_counter = 0;
+    }
 };
 
