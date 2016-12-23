@@ -4,20 +4,22 @@
 class ParserClass
 {
   public:
-    ParserClass(int maxDataLen, char* command_delimiter, char* data_delimiter) {
-      this->the_data = new int[maxDataLen];
+    ParserClass(int max_input_len, char* command_delimiter, char* data_delimiter) {
+      this->the_data = new int[max_input_len];
       this->command_delimiter = command_delimiter;
       this->data_delimiter = data_delimiter;
     }
 
     void parse(char* str, bool debug=false) {
       Serial.println(F(""));
-      Serial.print(F("ParserClass.parse(")); Serial.print(str); Serial.println(F(")"));
+      Serial.print(F("ParserClass.parse("));
+      Serial.print(str);
+      Serial.println(F(")"));
 
       this->clear();
 
       char* raw_command = strtok(str, this->command_delimiter);
-      Serial.print(F("raw_command: ")); Serial.println(raw_command);
+      //Serial.print(F("raw_command: ")); Serial.println(raw_command);
       this->the_command = atoi(raw_command);
 //      this->the_command = (unsigned long)(raw_command);
       
@@ -33,9 +35,9 @@ class ParserClass
       }
 
       if (debug) {
-        this->length();
         this->command();
-        this->data();
+        //this->data();
+        this->dataCount();
         Serial.print(F("free memory: ")); Serial.println(freeMemory());
       }
     }
@@ -56,18 +58,20 @@ class ParserClass
 //      }
 //      return d;
 
-      Serial.println(F("data: "));
-      for (int i=0; i < this->the_counter; i++) {
-        Serial.print(i); Serial.print(F(":"));
-        Serial.println(this->the_data[i]);
+      Serial.print(F("data: "));
+      for (int i=0; i < this->the_counter; i++) 
+      {
+        //Serial.print(i); Serial.print(F(":"));
+        Serial.print(this->the_data[i]); Serial.print(F("-"));
       }
+      Serial.println(F(""));
 
       return this->the_data;
     }
 
-    int length() {
+    int dataCount() {
       //Serial.println(F("ParserClass.getDataCount()"));
-      Serial.print(F("length: "));
+      Serial.print(F("data count: "));
       Serial.println(this->the_counter);
       return this->the_counter;
     }
