@@ -13,15 +13,14 @@ class CommandParser
     byte command();
     int* data();
     int length();
-
     
   private:
-    char* command_delimiter;
-    char* data_delimiter;
+    char* _command_delimiter;
+    char* _data_delimiter;
     
-    unsigned long the_command;
-    int* the_data;
-    int the_counter = 0;
+    unsigned long _command;
+    int* _data;
+    int _counter = 0;
 
     void clear();
 };
